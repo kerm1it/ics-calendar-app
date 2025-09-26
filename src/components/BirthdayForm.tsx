@@ -11,7 +11,10 @@ export default function BirthdayForm({ onSubmit }: Props) {
     calendarType: 'solar',
     birthDate: '',
     showAge: true,
-    reminders: ['1w', '1d'],
+    reminders: [
+      { offset: '1w', time: '12:00' },
+      { offset: '1d', time: '12:00' }
+    ],
     description: ''
   });
 
@@ -28,14 +31,17 @@ export default function BirthdayForm({ onSubmit }: Props) {
     onSubmit(formData);
   };
 
-  const handleReminderChange = (index: number, value: string) => {
+  const handleReminderChange = (index: number, field: 'offset' | 'time', value: string) => {
     const newReminders = [...formData.reminders];
-    newReminders[index] = value;
+    newReminders[index] = { ...newReminders[index], [field]: value };
     setFormData({ ...formData, reminders: newReminders });
   };
 
   const addReminder = () => {
-    setFormData({ ...formData, reminders: [...formData.reminders, '1d'] });
+    setFormData({
+      ...formData,
+      reminders: [...formData.reminders, { offset: '1d', time: '12:00' }]
+    });
   };
 
   const removeReminder = (index: number) => {
@@ -112,22 +118,27 @@ export default function BirthdayForm({ onSubmit }: Props) {
       <div className="form-group">
         <label>提醒设置</label>
         {formData.reminders.map((reminder, index) => (
-          <div key={index} className="reminder-row">
+          <div key={index} className="reminder-row-with-time">
             <select
-              value={reminder}
-              onChange={(e) => handleReminderChange(index, e.target.value)}
+              value={reminder.offset}
+              onChange={(e) => handleReminderChange(index, 'offset', e.target.value)}
+              className="reminder-offset"
             >
-              <option value="0">事件发生时</option>
-              <option value="30m">提前30分钟</option>
-              <option value="1h">提前1小时</option>
-              <option value="2h">提前2小时</option>
+              <option value="0">生日当天</option>
               <option value="1d">提前1天</option>
+              <option value="2d">提前2天</option>
               <option value="3d">提前3天</option>
               <option value="1w">提前1周</option>
               <option value="2w">提前2周</option>
             </select>
+            <input
+              type="time"
+              value={reminder.time}
+              onChange={(e) => handleReminderChange(index, 'time', e.target.value)}
+              className="reminder-time"
+            />
             {formData.reminders.length > 1 && (
-              <button type="button" onClick={() => removeReminder(index)}>删除</button>
+              <button type="button" onClick={() => removeReminder(index)} className="btn-delete">删除</button>
             )}
           </div>
         ))}

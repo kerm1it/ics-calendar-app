@@ -212,7 +212,7 @@ export class ICSGenerator {
 
     // Reminders/Alarms
     for (const reminder of params.reminders) {
-      lines.push(...this.generateVAlarm(reminder, params.summary));
+      lines.push(...this.generateVAlarm(reminder, params.summary, params.allDay));
     }
 
     lines.push('END:VEVENT');
@@ -223,14 +223,33 @@ export class ICSGenerator {
   /**
    * Generate VALARM component
    */
-  private generateVAlarm(reminder: Reminder, summary: string): string[] {
+  private generateVAlarm(reminder: Reminder, summary: string, isAllDay: boolean = false): string[] {
     const lines: string[] = [];
-    const minutes = this.reminderToMinutes(reminder);
 
     lines.push('BEGIN:VALARM');
     lines.push('ACTION:DISPLAY');
     lines.push(`DESCRIPTION:${this.escapeText(summary)}`);
-    lines.push(`TRIGGER:-PT${minutes}M`);
+
+    if (isAllDay && reminder.time) {
+      // For all-day events with specific reminder time
+      const [hours, minutes] = reminder.time.split(':').map(n => parseInt(n));
+      const totalMinutesFromMidnight = hours * 60 + minutes;
+
+      // Calculate the offset from the start of the event day (midnight)
+      const reminderOffsetMinutes = this.reminderToMinutes(reminder);
+      const daysOffset = Math.floor(reminderOffsetMinutes / (24 * 60));
+
+      // For all-day events, we need to calculate from midnight
+      // If reminder is "1 day before at 12:00", the offset should be 24*60 - 12*60 = 12*60 minutes
+      const actualMinutesOffset = (daysOffset * 24 * 60) + (24 * 60 - totalMinutesFromMidnight);
+
+      lines.push(`TRIGGER:-PT${actualMinutesOffset}M`);
+    } else {
+      // For timed events or all-day events without specific time, use standard offset
+      const minutes = this.reminderToMinutes(reminder);
+      lines.push(`TRIGGER:-PT${minutes}M`);
+    }
+
     lines.push('END:VALARM');
 
     return lines;

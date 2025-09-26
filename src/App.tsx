@@ -30,7 +30,13 @@ function App() {
 
   const handleAddBirthday = (data: BirthdayFormData) => {
     const reminders = data.reminders
-      .map(r => parseReminderString(r))
+      .map(r => {
+        const parsed = parseReminderString(r.offset);
+        if (parsed) {
+          return { ...parsed, time: r.time };
+        }
+        return null;
+      })
       .filter(r => r !== null);
 
     const birthdayEvent: CalendarEvent = {

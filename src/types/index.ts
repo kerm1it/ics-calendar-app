@@ -7,6 +7,7 @@ export type RecurrenceFrequency = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
 export interface Reminder {
   value: number;
   unit: 'weeks' | 'days' | 'hours' | 'minutes';
+  time?: string;  // Optional HH:MM format for specific reminder time
 }
 
 export interface Calendar {
@@ -75,7 +76,7 @@ export interface BirthdayFormData {
   calendarType: CalendarType;
   birthDate: string;  // YYYY-MM-DD format for both solar and lunar
   showAge: boolean;
-  reminders: string[];
+  reminders: { offset: string; time: string }[];  // offset: '1d', '2d', etc; time: 'HH:MM'
   description?: string;
 }
 
