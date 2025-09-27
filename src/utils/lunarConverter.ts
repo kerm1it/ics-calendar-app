@@ -190,7 +190,7 @@ export class LunarConverter {
    * Get lunar birthday date in a specific solar year
    */
   public static getBirthdayInSolarYear(
-    birthYear: number,
+    _birthYear: number,
     birthMonth: number,
     birthDay: number,
     targetSolarYear: number

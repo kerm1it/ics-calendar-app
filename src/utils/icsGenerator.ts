@@ -5,7 +5,6 @@
 
 import {
   Calendar,
-  CalendarEvent,
   BirthdayEvent,
   RegularEvent,
   Reminder,
@@ -153,7 +152,7 @@ export class ICSGenerator {
       allDay: event.allDay,
       reminders: event.reminders,
       recurring: !!rrule,
-      rrule
+      rrule: rrule || undefined
     });
   }
 
