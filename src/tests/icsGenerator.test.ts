@@ -25,7 +25,7 @@ test("Complete empty calendar ICS structure", () => {
       if (args.length === 0) {
         super(mockDate);
       } else {
-        super(...args);
+        super(...(args as ConstructorParameters<typeof Date>));
       }
     }
 
@@ -165,7 +165,7 @@ test("Complete lunar birthday ICS: 农历2020年正月初一", () => {
       if (args.length === 0) {
         super(mockDate);
       } else {
-        super(...args);
+        super(...(args as ConstructorParameters<typeof Date>));
       }
     }
 
@@ -229,7 +229,6 @@ test("Generate calendar with regular events", () => {
     recurrence: {
       frequency: "WEEKLY",
       interval: 1,
-      endType: "count",
       count: 10
     },
     reminders: [{ value: 15, unit: "minutes" }],
@@ -714,7 +713,7 @@ test("Complete ICS output validation: Simple birthday", () => {
       if (args.length === 0) {
         super(mockDate);
       } else {
-        super(...args);
+        super(...(args as ConstructorParameters<typeof Date>));
       }
     }
 
@@ -801,7 +800,7 @@ test("Complete ICS output: Event with reminder", () => {
       if (args.length === 0) {
         super(mockDate);
       } else {
-        super(...args);
+        super(...(args as ConstructorParameters<typeof Date>));
       }
     }
 
