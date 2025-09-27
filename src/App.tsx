@@ -6,6 +6,7 @@ import { ICSGenerator } from './utils/icsGenerator';
 import EventList from './components/EventList';
 import BirthdayForm from './components/BirthdayForm';
 import EventForm from './components/EventForm';
+import logoSvg from './assets/logo.svg';
 
 function App() {
   const [calendar, setCalendar] = useState<Calendar>({
@@ -117,7 +118,10 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>📅 ICS 日历生成器</h1>
+        <h1>
+          <img src={logoSvg} alt="ICS Calendar" width="48" height="48" style={{ marginRight: '12px', verticalAlign: 'middle', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }} />
+          ICS 日历生成器
+        </h1>
         <p>创建个性化的日历文件，导入到您喜欢的日历应用</p>
       </header>
 
