@@ -14,10 +14,7 @@ bun install                # Install dependencies
 # Building and Testing
 bun run build              # Build for production (TypeScript compilation + Vite build)
 bun run lint               # Run ESLint with TypeScript rules
-bun test                   # Run all tests
-bun test --watch           # Run tests in watch mode
-bun test --coverage        # Run tests with coverage report
-bun run preview            # Preview production build locally
+bun run test                   # Run all testsreport
 ```
 
 ## Architecture Overview
