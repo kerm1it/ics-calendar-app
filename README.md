@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="public/logo.svg" alt="ICS Calendar Generator Logo" width="120" height="120">
+</div>
+
 # ICS Calendar Generator 📅
 
 一个简单易用的日历事件生成器，支持农历和阳历生日提醒，可以生成标准的 ICS 文件导入到各种日历应用中。
