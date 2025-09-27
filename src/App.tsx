@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Calendar, CalendarEvent, BirthdayFormData, EventFormData } from './types';
 import { generateId, downloadFile, parseReminderString } from './utils/helpers';
@@ -7,6 +7,7 @@ import EventList from './components/EventList';
 import BirthdayForm from './components/BirthdayForm';
 import EventForm from './components/EventForm';
 import logoSvg from './assets/logo.svg';
+import { analytics, trackEvents } from './utils/analytics';
 
 function App() {
   const [calendar, setCalendar] = useState<Calendar>({
@@ -21,12 +22,27 @@ function App() {
   const [activeTab, setActiveTab] = useState<'birthday' | 'event'>('birthday');
   const [yearRange, setYearRange] = useState({ past: 0, future: 5 });
 
+  useEffect(() => {
+    analytics.init();
+    analytics.trackPageView();
+  }, []);
+
   const handleUpdateCalendar = (updates: Partial<Calendar>) => {
-    setCalendar(prev => ({
-      ...prev,
+    const newCalendar = {
+      ...calendar,
       ...updates,
       updatedAt: new Date()
-    }));
+    };
+
+    setCalendar(newCalendar);
+
+    if (updates.name && updates.name !== calendar.name) {
+      trackEvents.calendarCreate(updates.name);
+    }
+
+    if (updates.timezone && updates.timezone !== calendar.timezone) {
+      trackEvents.timezoneChange(updates.timezone);
+    }
   };
 
   const handleAddBirthday = (data: BirthdayFormData) => {
@@ -59,6 +75,8 @@ function App() {
       events: [...calendar.events, birthdayEvent],
       updatedAt: new Date()
     });
+
+    trackEvents.birthdayAdd(data.calendarType);
   };
 
   const handleAddEvent = (data: EventFormData) => {
@@ -92,15 +110,22 @@ function App() {
       events: [...calendar.events, regularEvent],
       updatedAt: new Date()
     });
+
+    trackEvents.eventAdd(data.allDay, data.recurring && !!data.recurrence);
   };
 
   const handleDeleteEvent = (eventId: string) => {
+    const eventToDelete = calendar.events.find(e => e.id === eventId);
 
     setCalendar({
       ...calendar,
       events: calendar.events.filter(e => e.id !== eventId),
       updatedAt: new Date()
     });
+
+    if (eventToDelete) {
+      trackEvents.eventDelete(eventToDelete.type);
+    }
   };
 
   const handleGenerateICS = () => {
@@ -112,6 +137,10 @@ function App() {
     const generator = new ICSGenerator({ calendar, yearRange });
     const content = generator.generate();
     const filename = `${calendar.name.replace(/\s+/g, '_')}.ics`;
+
+    trackEvents.icsGenerate(calendar.events.length, calendar.name);
+    trackEvents.icsDownload(filename, calendar.events.length);
+
     downloadFile(content, filename);
   };
 
@@ -161,13 +190,25 @@ function App() {
               <div className="tabs">
                 <button
                   className={activeTab === 'birthday' ? 'active' : ''}
-                  onClick={() => setActiveTab('birthday')}
+                  onClick={() => {
+                    const previousTab = activeTab;
+                    setActiveTab('birthday');
+                    if (previousTab !== 'birthday') {
+                      trackEvents.tabSwitch(previousTab, 'birthday');
+                    }
+                  }}
                 >
                   🎂 添加生日
                 </button>
                 <button
                   className={activeTab === 'event' ? 'active' : ''}
-                  onClick={() => setActiveTab('event')}
+                  onClick={() => {
+                    const previousTab = activeTab;
+                    setActiveTab('event');
+                    if (previousTab !== 'event') {
+                      trackEvents.tabSwitch(previousTab, 'event');
+                    }
+                  }}
                 >
                   📌 添加事件
                 </button>
@@ -187,7 +228,12 @@ function App() {
                             min="0"
                             max="10"
                             value={yearRange.past}
-                            onChange={(e) => setYearRange({ ...yearRange, past: parseInt(e.target.value) || 0 })}
+                            onChange={(e) => {
+                              const newPast = parseInt(e.target.value) || 0;
+                              const newYearRange = { ...yearRange, past: newPast };
+                              setYearRange(newYearRange);
+                              trackEvents.yearRangeChange(newPast, yearRange.future);
+                            }}
                           />
                           <span className="range-unit">年</span>
                         </label>
@@ -198,7 +244,12 @@ function App() {
                             min="1"
                             max="20"
                             value={yearRange.future}
-                            onChange={(e) => setYearRange({ ...yearRange, future: parseInt(e.target.value) || 5 })}
+                            onChange={(e) => {
+                              const newFuture = parseInt(e.target.value) || 5;
+                              const newYearRange = { ...yearRange, future: newFuture };
+                              setYearRange(newYearRange);
+                              trackEvents.yearRangeChange(yearRange.past, newFuture);
+                            }}
                           />
                           <span className="range-unit">年</span>
                         </label>
