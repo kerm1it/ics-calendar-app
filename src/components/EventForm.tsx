@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EventFormData } from '../types';
+import { EventFormData, RecurrenceFrequency } from '../types';
 
 interface Props {
   onSubmit: (data: EventFormData) => void;
@@ -117,7 +117,7 @@ export default function EventForm({ onSubmit }: Props) {
                 value={formData.recurrence?.frequency}
                 onChange={(e) => setFormData({
                   ...formData,
-                  recurrence: { ...formData.recurrence!, frequency: e.target.value as any }
+                  recurrence: { ...formData.recurrence!, frequency: e.target.value as RecurrenceFrequency }
                 })}
               >
                 <option value="DAILY">每天</option>

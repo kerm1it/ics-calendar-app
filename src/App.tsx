@@ -65,7 +65,7 @@ function App() {
       showAge: data.showAge,
       summary: `${data.personName}生日`,
       description: data.description,
-      reminders: reminders as any[],
+      reminders: reminders,
       createdAt: new Date(),
       updatedAt: new Date()
     };
@@ -100,7 +100,7 @@ function App() {
         count: data.recurrence.endType === 'count' ? data.recurrence.count : undefined,
         until: data.recurrence.endType === 'until' ? new Date(data.recurrence.until!) : undefined
       } : undefined,
-      reminders: reminders as any[],
+      reminders: reminders,
       createdAt: new Date(),
       updatedAt: new Date()
     };

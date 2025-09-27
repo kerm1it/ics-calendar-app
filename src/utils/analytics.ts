@@ -1,7 +1,7 @@
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: unknown[]) => void;
+    dataLayer: unknown[];
   }
 }
 
@@ -22,7 +22,7 @@ class Analytics {
     this.config = config;
   }
 
-  private gtag(...args: any[]) {
+  private gtag(...args: unknown[]) {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag(...args);
     }
@@ -34,8 +34,8 @@ class Analytics {
     }
 
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function() {
-      window.dataLayer.push(arguments);
+    window.gtag = function(...args: unknown[]) {
+      window.dataLayer.push(args);
     };
 
     const script = document.createElement('script');
