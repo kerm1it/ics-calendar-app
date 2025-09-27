@@ -52,11 +52,3 @@ jobs:
           #   --allowedTools "Bash(npm install),Bash(npm run build),Bash(npm run test:*),Bash(npm run lint:*)"
           #   --system-prompt "Follow our coding standards. Ensure all new code has tests. Use TypeScript for new files."
 
-          # Optional: Advanced settings configuration
-          settings: |
-            {
-              "env": {
-                ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
-                ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
-              }
-            }
