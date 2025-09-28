@@ -148,10 +148,13 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>
-          <img src={logoSvg} alt="ICS Calendar" width="48" height="48" style={{ marginRight: '12px', verticalAlign: 'middle', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }} />
-          ICS 日历生成器
+          <img src={logoSvg} alt="ICS Calendar Generator - 日历生成器" width="48" height="48" style={{ marginRight: '12px', verticalAlign: 'middle', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }} />
+          ICS 日历生成器 Calendar Generator
         </h1>
-        <p>创建个性化的日历文件，导入到您喜欢的日历应用</p>
+        <p>免费在线创建个性化的 ICS 日历文件，支持农历阳历生日提醒、重复事件管理，轻松导入到 Apple 日历、Google 日历、Outlook 等应用</p>
+        <p style={{ fontSize: '0.9rem', opacity: '0.8', marginTop: '8px' }}>
+          Free online ICS calendar file generator with lunar calendar support, birthday reminders, and recurring events
+        </p>
       </header>
 
       <main className="app-main">
@@ -218,8 +221,13 @@ function App() {
                 {activeTab === 'birthday' ? (
                   <>
                     <div className="year-range-section">
-                      <h3>生日重复年份设置</h3>
-                      <p className="year-range-desc">生日事件会在指定的年份范围内每年重复，例如：过去0年、未来5年表示生成从今年到未来5年的生日提醒</p>
+                      <h3>生日重复年份设置 Birthday Recurrence Settings</h3>
+                      <p className="year-range-desc">
+                        生日事件会在指定的年份范围内每年重复，支持农历和阳历生日自动转换。例如：过去0年、未来5年表示生成从今年到未来5年的生日提醒和日历事件
+                      </p>
+                      <p className="year-range-desc" style={{ fontSize: '0.85rem', opacity: '0.7' }}>
+                        Birthday events will repeat annually within the specified year range, with automatic lunar to solar calendar conversion
+                      </p>
                       <div className="year-range">
                         <label>
                           <span className="range-label">往前生成</span>
@@ -270,12 +278,35 @@ function App() {
 
             <div className="generate-section">
               <button className="generate-btn" onClick={handleGenerateICS}>
-                ⬇️ 生成并下载 ICS 文件
+                ⬇️ 生成并下载 ICS 日历文件 Generate & Download ICS Calendar
               </button>
+              <p style={{ fontSize: '0.8rem', opacity: '0.6', marginTop: '8px', textAlign: 'center' }}>
+                可导入到 Apple 日历、Google 日历、Outlook 等应用 | Compatible with Apple Calendar, Google Calendar, Outlook
+              </p>
             </div>
           </>
         )}
       </main>
+
+      <footer style={{
+        marginTop: '40px',
+        padding: '20px',
+        borderTop: '1px solid #e5e7eb',
+        textAlign: 'center',
+        fontSize: '0.85rem',
+        color: '#6b7280'
+      }}>
+        <p>
+          <strong>ICS 日历生成器</strong> - 免费在线工具，支持农历生日、阳历生日、重复事件、提醒设置
+        </p>
+        <p style={{ marginTop: '8px' }}>
+          Free ICS Calendar Generator | Birthday Reminders | Lunar Calendar | Event Management |
+          Compatible with Apple Calendar, Google Calendar, Outlook, Thunderbird
+        </p>
+        <p style={{ marginTop: '8px', fontSize: '0.8rem' }}>
+          关键词：日历生成器, 生日提醒, 农历转换, ICS文件, 日历导入, 事件管理, 重复提醒, 时区设置
+        </p>
+      </footer>
     </div>
   );
 }
