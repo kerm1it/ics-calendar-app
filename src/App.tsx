@@ -6,6 +6,7 @@ import { ICSGenerator } from './utils/icsGenerator';
 import EventList from './components/EventList';
 import BirthdayForm from './components/BirthdayForm';
 import EventForm from './components/EventForm';
+import ThemeToggle from './components/ThemeToggle';
 import logoSvg from './assets/logo.svg';
 import { analytics, trackEvents } from './utils/analytics';
 
@@ -147,6 +148,7 @@ function App() {
 
   return (
     <div className="app">
+      <ThemeToggle />
       <header className="app-header">
         <h1>
           <img src={logoSvg} alt="ICS Calendar Generator - 日历生成器" width="48" height="48" style={{ marginRight: '12px', verticalAlign: 'middle', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }} />
@@ -300,22 +302,15 @@ function App() {
         )}
       </main>
 
-      <footer style={{
-        marginTop: '40px',
-        padding: '20px',
-        borderTop: '1px solid #e5e7eb',
-        textAlign: 'center',
-        fontSize: '0.85rem',
-        color: '#6b7280'
-      }}>
+      <footer>
         <p>
           <strong>ICS 日历生成器</strong> - 免费在线工具，支持农历生日、阳历生日、重复事件、提醒设置
         </p>
-        <p style={{ marginTop: '8px' }}>
+        <p>
           Free ICS Calendar Generator | Birthday Reminders | Lunar Calendar | Event Management |
           Compatible with Apple Calendar, Google Calendar, Outlook, Thunderbird
         </p>
-        <p style={{ marginTop: '8px', fontSize: '0.8rem' }}>
+        <p style={{ fontSize: '0.8rem' }}>
           关键词：日历生成器, 生日提醒, 农历转换, ICS文件, 日历导入, 事件管理, 重复提醒, 时区设置
         </p>
       </footer>

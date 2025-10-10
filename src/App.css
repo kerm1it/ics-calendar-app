@@ -1,45 +1,42 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-}
-
 .app {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 
 .app-header {
   text-align: center;
-  color: white;
   margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px var(--color-shadow);
 }
 
 .app-header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.app-header p {
+  color: var(--color-text-secondary);
 }
 
 .app-main {
-  background: white;
+  background: var(--color-surface);
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px var(--color-shadow);
 }
 
 .calendar-settings {
-  background: #f8f9fa;
+  background: var(--color-surface-secondary);
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   margin-bottom: 2rem;
+  border: 1px solid var(--color-border-light);
 }
 
 .settings-row {
@@ -56,7 +53,7 @@ body {
 .form-group.inline label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -65,16 +62,18 @@ body {
 .form-group.inline select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
 .tabs {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--color-border-light);
 }
 
 .tabs button {
@@ -83,15 +82,15 @@ body {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  color: #666;
-  border-bottom: 2px solid transparent;
+  color: var(--color-text-secondary);
+  border-bottom: 3px solid transparent;
   transition: all 0.3s;
 }
 
 .tabs button.active,
 .tabs button:hover {
-  color: #667eea;
-  border-bottom-color: #667eea;
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
 }
 
 .form-group {
@@ -102,7 +101,7 @@ body {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .form-group input[type="text"],
@@ -113,17 +112,20 @@ body {
 .form-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: border-color 0.3s;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
 .form-row {
@@ -157,17 +159,17 @@ body {
   min-width: 150px;
   padding: 0.75rem;
   padding-right: 2.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   font-size: 1rem;
   line-height: 1.2;
-  background-color: white;
-  color: #333;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 12px;
@@ -175,36 +177,36 @@ body {
 
 .reminder-offset:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
 .reminder-offset option {
   padding: 0.5rem;
-  background: white;
-  color: #333;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
 .reminder-time {
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   font-size: 1rem;
   width: 140px;
-  background: white;
-  color: #333;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 
 .reminder-time:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
 .btn-delete {
   padding: 0.75rem 1rem;
-  background: #dc3545;
+  background: var(--color-error);
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -212,11 +214,12 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .btn-delete:hover {
-  background: #c82333;
+  background: #d32f2f;
+  transform: translateY(-1px);
 }
 
 /* Mobile optimizations */
@@ -415,28 +418,33 @@ body {
 .btn-secondary {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
+  font-weight: 500;
 }
 
 .btn-primary {
-  background: #667eea;
+  background: var(--color-primary);
   color: white;
 }
 
 .btn-primary:hover {
-  background: #5a67d8;
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow-hover);
 }
 
 .btn-secondary {
-  background: #e2e8f0;
-  color: #333;
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
-  background: #cbd5e0;
+  background: var(--color-border-light);
+  transform: translateY(-1px);
 }
 
 .event-list {
@@ -445,7 +453,7 @@ body {
 
 .event-list h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .events {
@@ -454,14 +462,17 @@ body {
 }
 
 .event-item {
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  transition: box-shadow 0.3s;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: box-shadow 0.3s, transform 0.2s;
+  background: var(--color-surface);
 }
 
 .event-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px var(--color-shadow-hover);
+  transform: translateY(-2px);
+  border-color: var(--color-primary-light);
 }
 
 .event-header {
@@ -476,30 +487,34 @@ body {
 
 .event-header h4 {
   flex: 1;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .delete-btn {
-  padding: 0.25rem 0.75rem;
-  background: #ef4444;
+  padding: 0.5rem 1rem;
+  background: var(--color-error);
   color: white;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .delete-btn:hover {
-  background: #dc2626;
+  background: #d32f2f;
+  transform: scale(1.05);
 }
 
 .event-description {
-  color: #666;
+  color: var(--color-text-secondary);
   margin-top: 0.5rem;
+  line-height: 1.5;
 }
 
 .event-reminders {
-  color: #999;
+  color: var(--color-text-tertiary);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
@@ -507,39 +522,40 @@ body {
 .generate-section {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--color-border);
 }
 
 .year-range-section {
-  background: #fffbf0;
+  background: var(--color-surface-secondary);
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #ffd6a5;
+  border: 1px solid var(--color-border);
 }
 
 .year-range-section h3 {
-  color: #333;
+  color: var(--color-text-primary);
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
 }
 
 .year-range-desc {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
 
 .year-range-example {
-  color: #4a5568;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   margin-top: 0.75rem;
   font-weight: 500;
-  background: white;
+  background: var(--color-surface);
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   display: inline-block;
+  border: 1px solid var(--color-border-light);
 }
 
 .year-range {
@@ -555,22 +571,24 @@ body {
 }
 
 .range-label {
-  color: #4a5568;
+  color: var(--color-text-primary);
   font-weight: 500;
 }
 
 .range-unit {
-  color: #718096;
+  color: var(--color-text-secondary);
 }
 
 .year-range input {
   width: 60px;
   padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   text-align: center;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
 .calendar-type-selector {
@@ -582,45 +600,45 @@ body {
 .calendar-type-btn {
   flex: 1;
   padding: 0.75rem 1rem;
-  background: #f5f5f5;
-  border: 2px solid #e0e0e0;
-  border-radius: 0.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: #666;
+  color: var(--color-text-secondary);
   font-weight: 500;
 }
 
 .calendar-type-btn:hover {
-  background: #eeeeee;
-  border-color: #d0d0d0;
+  background: var(--color-surface-secondary);
+  border-color: var(--color-primary-light);
 }
 
 .calendar-type-btn.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-color: #667eea;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px var(--color-shadow-hover);
 }
 
 .calendar-type-hint {
-  color: #4a5568;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   margin-top: 0.75rem;
   padding: 0.5rem;
-  background: #f0f4ff;
-  border-radius: 0.25rem;
+  background: var(--color-surface-secondary);
+  border-radius: 0.5rem;
   text-align: center;
 }
 
 .calendar-type-hint strong {
-  color: #667eea;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 label span.calendar-type-hint {
-  color: #e53e3e;
+  color: var(--color-error);
   font-size: 0.85rem;
   font-weight: normal;
   margin-left: 0.5rem;
@@ -629,7 +647,7 @@ label span.calendar-type-hint {
 }
 
 .form-hint {
-  color: #718096;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   margin-top: 0.5rem;
   line-height: 1.4;
@@ -637,19 +655,22 @@ label span.calendar-type-hint {
 
 .generate-btn {
   width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1.25rem;
+  background: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px var(--color-shadow);
 }
 
 .generate-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  background: var(--color-primary-hover);
+  box-shadow: 0 6px 20px var(--color-shadow-hover);
 }
 
 /* Floating Panel Styles */
@@ -658,9 +679,9 @@ label span.calendar-type-hint {
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-  border-top: 2px solid #e2e8f0;
+  background: var(--color-surface);
+  box-shadow: 0 -4px 20px var(--color-shadow-hover);
+  border-top: 2px solid var(--color-border);
   z-index: 1000;
   max-height: 70vh;
   display: flex;
@@ -682,7 +703,7 @@ label span.calendar-type-hint {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-primary);
   color: white;
   cursor: pointer;
   user-select: none;
@@ -690,7 +711,7 @@ label span.calendar-type-hint {
 }
 
 .floating-panel-header:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b3f96 100%);
+  background: var(--color-primary-hover);
 }
 
 .panel-title {
@@ -703,7 +724,7 @@ label span.calendar-type-hint {
 
 .event-count-badge {
   background: white;
-  color: #667eea;
+  color: var(--color-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   font-weight: bold;
@@ -717,10 +738,11 @@ label span.calendar-type-hint {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s;
+  font-weight: 500;
 }
 
 .toggle-btn:hover {
@@ -754,31 +776,50 @@ label span.calendar-type-hint {
 
 .floating-panel-footer {
   padding: 1rem 1.5rem;
-  background: #f8f9fa;
-  border-top: 1px solid #e2e8f0;
+  background: var(--color-surface-secondary);
+  border-top: 1px solid var(--color-border);
 }
 
 .generate-btn-floating {
   width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1.25rem;
+  background: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px var(--color-shadow);
 }
 
 .generate-btn-floating:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  background: var(--color-primary-hover);
+  box-shadow: 0 6px 20px var(--color-shadow-hover);
 }
 
 .generate-btn-floating:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
+}
+
+/* Footer Styles */
+.app footer {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.app footer p {
+  margin-top: 8px;
+}
+
+.app footer strong {
+  color: var(--color-text-primary);
 }
 
 /* Mobile optimizations for floating panel */
