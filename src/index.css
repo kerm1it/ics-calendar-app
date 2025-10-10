@@ -32,6 +32,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Color scheme for browser UI controls (date/time pickers) */
+  color-scheme: light;
 }
 
 /* Dark Theme */
@@ -49,6 +52,9 @@
   --color-border-light: #2a2a2a;
   --color-shadow: rgba(0, 0, 0, 0.3);
   --color-shadow-hover: rgba(0, 0, 0, 0.4);
+
+  /* Color scheme for browser UI controls (date/time pickers) */
+  color-scheme: dark;
 }
 
 /* Auto dark mode based on system preference (only when no explicit theme is set) */
@@ -67,6 +73,9 @@
     --color-border-light: #2a2a2a;
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
+
+    /* Color scheme for browser UI controls (date/time pickers) */
+    color-scheme: dark;
   }
 }
 
