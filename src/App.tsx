@@ -189,6 +189,21 @@ function App() {
           </div>
         </div>
 
+        {calendar.events.length > 0 && (
+          <>
+            <EventList events={calendar.events} onDelete={handleDeleteEvent} />
+
+            <div className="generate-section">
+              <button className="generate-btn" onClick={handleGenerateICS}>
+                ⬇️ 生成并下载 ICS 日历文件 Generate & Download ICS Calendar
+              </button>
+              <p style={{ fontSize: '0.8rem', opacity: '0.6', marginTop: '8px', textAlign: 'center' }}>
+                可导入到 Apple 日历、Google 日历、Outlook 等应用 | Compatible with Apple Calendar, Google Calendar, Outlook
+              </p>
+            </div>
+          </>
+        )}
+
             <div className="event-section">
               <div className="tabs">
                 <button
@@ -271,21 +286,6 @@ function App() {
                 )}
               </div>
             </div>
-
-        {calendar.events.length > 0 && (
-          <>
-            <EventList events={calendar.events} onDelete={handleDeleteEvent} />
-
-            <div className="generate-section">
-              <button className="generate-btn" onClick={handleGenerateICS}>
-                ⬇️ 生成并下载 ICS 日历文件 Generate & Download ICS Calendar
-              </button>
-              <p style={{ fontSize: '0.8rem', opacity: '0.6', marginTop: '8px', textAlign: 'center' }}>
-                可导入到 Apple 日历、Google 日历、Outlook 等应用 | Compatible with Apple Calendar, Google Calendar, Outlook
-              </p>
-            </div>
-          </>
-        )}
       </main>
 
       <footer style={{
