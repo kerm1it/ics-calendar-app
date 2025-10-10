@@ -21,6 +21,7 @@ function App() {
   });
   const [activeTab, setActiveTab] = useState<'birthday' | 'event'>('birthday');
   const [yearRange, setYearRange] = useState({ past: 0, future: 5 });
+  const [isFloatingPanelExpanded, setIsFloatingPanelExpanded] = useState(false);
 
   useEffect(() => {
     analytics.init();
@@ -273,18 +274,29 @@ function App() {
             </div>
 
         {calendar.events.length > 0 && (
-          <>
-            <EventList events={calendar.events} onDelete={handleDeleteEvent} />
-
-            <div className="generate-section">
-              <button className="generate-btn" onClick={handleGenerateICS}>
-                ⬇️ 生成并下载 ICS 日历文件 Generate & Download ICS Calendar
+          <div className={`floating-panel ${isFloatingPanelExpanded ? 'expanded' : ''}`}>
+            <div className="floating-panel-header" onClick={() => setIsFloatingPanelExpanded(!isFloatingPanelExpanded)}>
+              <div className="panel-title">
+                <span className="event-count-badge">{calendar.events.length}</span>
+                <span>已添加的事件</span>
+              </div>
+              <button className="toggle-btn" aria-label={isFloatingPanelExpanded ? '收起' : '展开'}>
+                {isFloatingPanelExpanded ? '▼' : '▲'}
               </button>
-              <p style={{ fontSize: '0.8rem', opacity: '0.6', marginTop: '8px', textAlign: 'center' }}>
-                可导入到 Apple 日历、Google 日历、Outlook 等应用 | Compatible with Apple Calendar, Google Calendar, Outlook
-              </p>
             </div>
-          </>
+
+            <div className={`floating-panel-content ${isFloatingPanelExpanded ? 'visible' : ''}`}>
+              <div className="floating-event-list">
+                <EventList events={calendar.events} onDelete={handleDeleteEvent} />
+              </div>
+            </div>
+
+            <div className="floating-panel-footer">
+              <button className="generate-btn-floating" onClick={handleGenerateICS}>
+                ⬇️ 生成并下载 ({calendar.events.length} 个事件)
+              </button>
+            </div>
+          </div>
         )}
       </main>
 
